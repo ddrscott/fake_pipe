@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'faker_pipe/version'
+require 'anonymizer/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'faker_pipe'
-  spec.version       = FakerPipe::VERSION
+  spec.name          = 'anonymizer'
+  spec.version       = Anonymizer::VERSION
   spec.authors       = ['Scott Pierce']
   spec.email         = ['scott.pierce@centro.net']
 
-  spec.summary       = 'db_dump.sql | faker_pipe > fake_dump.sql'
-  spec.homepage      = "https://github.com/centro/faker_pipe"
+  spec.summary       = 'db_dump.sql | anonymizer > fake_dump.sql'
+  spec.homepage      = 'https://github.com/centro/anonymizer'
   spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
@@ -26,6 +26,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_dependency 'activesupport'
+  spec.add_dependency 'faker'
   spec.add_development_dependency 'bundler', '~> 1.11'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
