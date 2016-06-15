@@ -48,8 +48,8 @@ module Anonymizer
             output line
           end
         else
-          current_block = text_blocks.detect { |block| block.start_text?(line) }
           output line
+          current_block = text_blocks.detect { |block| block.start_text?(line) }
         end
       end
     end
