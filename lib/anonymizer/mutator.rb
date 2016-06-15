@@ -31,7 +31,7 @@ module Anonymizer
     # Currently used by a `rake methods`.
     def list_with_commnets
       require 'method_source'
-      list.map { |short| [short, public_method( "mutate_#{short}").comment.strip] }
+      list.map { |short| [short, public_method("mutate_#{short}").comment.strip] }
     end
 
     def clean_phone

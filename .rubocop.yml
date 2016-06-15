@@ -1,0 +1,26 @@
+AllCops:
+  TargetRubyVersion: 2.2
+Rails:
+  Enabled: true
+Encoding:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Style/AndOr:
+  EnforcedStyle: conditionals
+Style/CaseEquality:
+  Enabled: false
+Style/ConditionalAssignment:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/SingleLineBlockParams:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false

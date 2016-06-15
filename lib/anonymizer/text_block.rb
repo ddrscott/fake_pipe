@@ -20,7 +20,7 @@ module Anonymizer
     end
 
     def start_text?(line)
-      start_pattern && (self.start_match= start_pattern.match(line))
+      start_pattern && (self.start_match = start_pattern.match(line))
     end
 
     def end_text?(line)

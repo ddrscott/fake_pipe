@@ -1,12 +1,12 @@
 module Anonymizer
   # This class cooridinates between all the text blocks.
   # The class is initialized with some input io, an output io, and an adapter.
-  # 
+  #
   # ## Adapter
   # An adapter is created by creating a module directly under anonymizer. The
   # module must respond to `text_blocks` which will return all the `TextBlock`
   # classes needed to call `on_config` and `on_cell`.
-  # 
+  #
   # ## General IO Flow
   # The `run` method is probably the most interesting. It streams in `each_line`
   # of the input `io` and will output either the same line or the parsed line
@@ -16,7 +16,6 @@ module Anonymizer
   #
   # Most lines from `io` should be passed directly to the `outputter`
   class Piper
-
     attr_accessor :io, :configs, :outputter, :text_blocks
 
     # @param [String] adapter should be a module file directly under the 'anonymizer' path
@@ -49,13 +48,13 @@ module Anonymizer
             output line
           end
         else
-          current_block = text_blocks.detect{|block| block.start_text?(line)}
-          output line 
+          current_block = text_blocks.detect { |block| block.start_text?(line) }
+          output line
         end
       end
     end
 
-    # Delegate method to be called by the #text_objects to get config information from 
+    # Delegate method to be called by the #text_objects to get config information from
     # a table's column
     def on_config(table:, column:, config:)
       table = (configs[table] ||= {})

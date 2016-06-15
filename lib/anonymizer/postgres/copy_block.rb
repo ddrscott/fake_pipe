@@ -2,21 +2,20 @@ require 'anonymizer/text_block'
 
 module Anonymizer
   module Postgres
-
     # Finds COPY... text blocks inside of `pg_dumps`
     class CopyBlock
       include TextBlock
 
       CSV_OPTIONS = {
         col_sep: "\t"
-      }
+      }.freeze
 
       COLUMN_SPLITTER = /,\s*/
 
       self.start_pattern = /^COPY (?<table>\S+) \((?<columns>[^)]*)\) FROM stdin;/
       self.end_pattern = /\\\\./
 
-      # When theres a match save out all the table/column information 
+      # When theres a match save out all the table/column information
       def start_text?(line)
         super.try(:tap) do |match|
           build_column_index(match: match, line: line)
@@ -27,7 +26,7 @@ module Anonymizer
       def build_column_index(match:, line:)
         @table = match[:table]
         @columns = match[:columns].split(COLUMN_SPLITTER)
-        @column_idx = Hash[@columns.map.with_index{|name, i| [i, name]}]
+        @column_idx = Hash[@columns.map.with_index { |name, i| [i, name] }]
       end
 
       # @return [String] maybe mutated by `delegate.on_cell`
