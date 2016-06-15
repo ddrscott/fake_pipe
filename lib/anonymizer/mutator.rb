@@ -13,7 +13,7 @@ module Anonymizer
     def mutate(name, cell)
       mutator_method = "mutate_#{name}"
       if respond_to? mutator_method
-        __send__(mutator_method, cell)
+        public_send(mutator_method, cell)
       else
         raise "Mutator named `#{name}` not found. Try one of these: #{list.join(', ')}"
       end
