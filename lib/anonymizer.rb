@@ -7,6 +7,7 @@ require 'yaml'
 # internal
 require 'anonymizer/version'
 require 'anonymizer/text_block'
+require 'anonymizer/any_block'
 require 'anonymizer/piper'
 require 'anonymizer/mutator'
 

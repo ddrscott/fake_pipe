@@ -32,30 +32,28 @@ module Anonymizer
       self.text_blocks = adapter_module.camelize.constantize.text_blocks.map do |text_block|
         text_block.new(self)
       end
+
+      # AnyBlock is a catch all and needs to come last.
+      self.text_blocks << AnyBlock.new(self)
     end
 
     def run
       # used to track which text_block is currently in use
-      current_block = nil
+      current_block = text_blocks.last
       io.each_line do |line|
-        if current_block
-          if line =~ current_block.end_pattern
-            current_block = nil
-            output line
-          elsif configs[current_block.table]    # optimization: only parse of the text block has a table configuration
-            output current_block.parse(line)
-          else                                  # otherwise output the original line
-            output line
-          end
-        else
+        if current_block.end_text?(line)
           output line
           current_block = text_blocks.detect { |block| block.start_text?(line) }
+        elsif configs[current_block.table]    # optimization: only parse of the text block has a table configuration
+          output current_block.parse(line)
+        else                                  # otherwise output the original line
+          output line
         end
       end
     end
 
-    # Delegate method to be called by the #text_objects to get config information from
-    # a table's column
+    # Delegate method to be called by the #text_objects to get config information 
+    # from a table's column
     def on_config(table:, column:, config:)
       table = (configs[table] ||= {})
       table[column] = config
