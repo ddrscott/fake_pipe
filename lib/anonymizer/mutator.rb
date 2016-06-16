@@ -2,7 +2,7 @@ module Anonymizer
   # This class handles mapping between a configured mutation such as
   # 'phone_number' and the logic to change the data.
   #
-  # To create a new mutable nameed configuration create a method prefixed
+  # To create a new mutable named configuration create a method prefixed
   # with `mutate_`. The method will receive the original cell value and is
   # expected to return the mutated value. Please add comment to the mutate
   # method. The comment is used by `rake methods` to get a listing of all
@@ -29,7 +29,7 @@ module Anonymizer
     # Utility method for outputting available mutators.
     # Only require method source here.
     # Currently used by a `rake methods`.
-    def list_with_commnets
+    def list_with_comments
       require 'method_source'
       list.map { |short| [short, public_method("mutate_#{short}").comment.strip] }
     end
