@@ -21,9 +21,9 @@ module Anonymizer
 
     def list
       @list ||= public_methods
-                .map { |m| m.to_s[/^mutate_(\w+)$/, 1] }
-                .select(&:present?)
-                .sort
+        .map { |m| m.to_s[/^mutate_(\w+)$/, 1] }
+        .select(&:present?)
+        .sort
     end
 
     # Utility method for outputting available mutators.
@@ -34,23 +34,126 @@ module Anonymizer
       list.map { |short| [short, public_method("mutate_#{short}").comment.strip] }
     end
 
-    def clean_phone
+    # Faker::PhoneNumber with punctuation and extensions
+    def mutate_phone_number(_)
+      Faker::PhoneNumber.phone_number
+    end
+
+    # Faker::PhoneNumber 10-digits only
+    def mutate_clean_phone_number(_)
       Faker::PhoneNumber.phone_number.gsub(/\D|(^1)/, '')[0, 10]
     end
 
-    # Faker::PhoneNumber with digits only
-    def mutate_phone_number(_cell)
-      clean_phone
+    # Faker email
+    def mutate_email(_)
+      Faker::Internet.email
     end
 
-    # Faker email
-    def mutate_email(_cell)
-      Faker::Internet.email
+    # Faker::Internet.user_name
+    def mutate_user_name
+      Faker::Internet.user_name
+    end
+
+    # Faker::Internet.url
+    def mutate_url
+      Faker::Internet.url
     end
 
     # MD5 hash of cell contents
     def mutate_md5(cell)
       cell ? Digest::MD5.base64digest(cell) : cell
     end
+
+    # Faker::Address.street_address
+    def mutate_address_line_1
+      Faker::Address.street_address
+    end
+
+    # Faker::Address.secondary_address
+    def mutate_address_line_2
+      Faker::Address.secondary_address
+    end
+
+    # Faker::Address.country
+    def mutate_address_country
+      Faker::Address.country
+    end
+
+    # Faker::Address.city
+    def mutate_address_city
+      Faker::Address.city
+    end
+
+    # Faker::Address.state
+    def mutate_address_state
+      Faker::Address.state
+    end
+
+    # Faker::Address.postcode
+    def mutate_address_postcode
+      Faker::Address.postcode
+    end
+
+    # Faker::Company.name
+    def mutate_company_name
+      Faker::Company.name
+    end
+
+    # Faker::Company.catch_phrase
+    def mutate_company_catch_phrase
+      Faker::Company.catch_phrase
+    end
+
+    # an empty String
+    def mutate_empty_string
+      ''
+    end
+
+    # Faker::Lorem.paragraph
+    def mutate_lorem_paragraph
+      Faker::Lorem.paragraph
+    end
+
+    # Faker::Lorem.word
+    def mutate_lorem_word
+      Faker::Lorem.word
+    end
+
+    # Faker::Lorem.sentence
+    def mutate_lorem_sentence
+      Faker::Lorem.sentence
+    end
+
+    # Faker::Name.first_name
+    def mutate_first_name
+      Faker::Name.first_name
+    end
+
+    # Faker::Name.last_name
+    def mutate_last_name
+      Faker::Name.last_name
+    end
+
+    # Faker::Name.full_name
+    def mutate_full_name
+      Faker::Name.full_name
+    end
+
+    # Faker::PhoneNumber.extension
+    def mutate_phone_ext
+      Faker::PhoneNumber.extension
+    end
+
+    # TODO don't know how to do this, yet
+    def mutate_password
+      'abracadabra'
+    end
+
+    # GUID/UUID
+    def mutate_uuid
+      SecureRandom.uuid
+    end
+    alias mutate_guid mutate_uuid
+
   end
 end
