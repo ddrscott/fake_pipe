@@ -21,9 +21,9 @@ module Anonymizer
 
     def list
       @list ||= public_methods
-        .map { |m| m.to_s[/^mutate_(\w+)$/, 1] }
-        .select(&:present?)
-        .sort
+                .map { |m| m.to_s[/^mutate_(\w+)$/, 1] }
+                .select(&:present?)
+                .sort
     end
 
     # Utility method for outputting available mutators.
@@ -159,6 +159,5 @@ module Anonymizer
       SecureRandom.uuid
     end
     alias mutate_guid mutate_uuid
-
   end
 end
