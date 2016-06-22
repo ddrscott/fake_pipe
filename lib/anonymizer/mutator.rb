@@ -144,9 +144,14 @@ module Anonymizer
       Faker::PhoneNumber.extension
     end
 
-    # TODO don't know how to do this, yet
-    def mutate_password
-      'abracadabra'
+    # bcrypt password as 'password'
+    def mutate_bcrypt_password(_)
+      '400$8$2d$f6ed5a490c441958$67f59aa61bc617849a3280b5e80f78607e53b5aa5807a44ddbc53e804e2e2a99'
+    end
+
+    # bcrypt salt used to generate password
+    def mutate_bcrypt_salt(_)
+      'au6lOASvp17AGsqkmE7'
     end
 
     # GUID/UUID
