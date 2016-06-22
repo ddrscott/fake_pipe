@@ -50,12 +50,12 @@ module Anonymizer
     end
 
     # Faker::Internet.user_name
-    def mutate_user_name
+    def mutate_user_name(_)
       Faker::Internet.user_name
     end
 
     # Faker::Internet.url
-    def mutate_url
+    def mutate_url(_)
       Faker::Internet.url
     end
 
@@ -65,82 +65,82 @@ module Anonymizer
     end
 
     # Faker::Address.street_address
-    def mutate_address_line_1
+    def mutate_address_line_1(_)
       Faker::Address.street_address
     end
 
     # Faker::Address.secondary_address
-    def mutate_address_line_2
+    def mutate_address_line_2(_)
       Faker::Address.secondary_address
     end
 
     # Faker::Address.country
-    def mutate_address_country
+    def mutate_address_country(_)
       Faker::Address.country
     end
 
     # Faker::Address.city
-    def mutate_address_city
+    def mutate_address_city(_)
       Faker::Address.city
     end
 
     # Faker::Address.state
-    def mutate_address_state
+    def mutate_address_state(_)
       Faker::Address.state
     end
 
     # Faker::Address.postcode
-    def mutate_address_postcode
+    def mutate_address_postcode(_)
       Faker::Address.postcode
     end
 
     # Faker::Company.name
-    def mutate_company_name
+    def mutate_company_name(_)
       Faker::Company.name
     end
 
     # Faker::Company.catch_phrase
-    def mutate_company_catch_phrase
+    def mutate_company_catch_phrase(_)
       Faker::Company.catch_phrase
     end
 
     # an empty String
-    def mutate_empty_string
+    def mutate_empty_string(_)
       ''
     end
 
     # Faker::Lorem.paragraph
-    def mutate_lorem_paragraph
+    def mutate_lorem_paragraph(_)
       Faker::Lorem.paragraph
     end
 
     # Faker::Lorem.word
-    def mutate_lorem_word
+    def mutate_lorem_word(_)
       Faker::Lorem.word
     end
 
     # Faker::Lorem.sentence
-    def mutate_lorem_sentence
+    def mutate_lorem_sentence(_)
       Faker::Lorem.sentence
     end
 
     # Faker::Name.first_name
-    def mutate_first_name
+    def mutate_first_name(_)
       Faker::Name.first_name
     end
 
     # Faker::Name.last_name
-    def mutate_last_name
+    def mutate_last_name(_)
       Faker::Name.last_name
     end
 
     # Faker::Name.full_name
-    def mutate_full_name
+    def mutate_full_name(_)
       Faker::Name.full_name
     end
 
     # Faker::PhoneNumber.extension
-    def mutate_phone_ext
+    def mutate_phone_ext(_)
       Faker::PhoneNumber.extension
     end
 
@@ -155,7 +155,7 @@ module Anonymizer
     end
 
     # GUID/UUID
-    def mutate_uuid
+    def mutate_uuid(_)
       SecureRandom.uuid
     end
     alias mutate_guid mutate_uuid
