@@ -30,8 +30,8 @@ module Anonymizer
       adapter_module = "anonymizer/#{adapter}"
       require adapter_module
       adapter_class = adapter_module.camelize.constantize
-      text_blocks = adapter_class.text_blocks.map do |text_block|
-        text_block.new(delegate: self)
+      self.text_blocks = adapter_class.text_blocks.map do |block_class|
+        block_class.new(delegate: self)
       end
 
       # AnyBlock is a catch all and needs to come last.
