@@ -29,12 +29,13 @@ module Anonymizer
     def register_adapter(adapter)
       adapter_module = "anonymizer/#{adapter}"
       require adapter_module
-      self.text_blocks = adapter_module.camelize.constantize.text_blocks.map do |text_block|
-        text_block.new(self)
+      adapter_class = adapter_module.camelize.constantize
+      text_blocks = adapter_class.text_blocks.map do |text_block|
+        text_block.new(delegate: self)
       end
 
       # AnyBlock is a catch all and needs to come last.
-      self.text_blocks << AnyBlock.new(self)
+      text_blocks << AnyBlock.new(delegate: self)
     end
 
     def run
@@ -43,7 +44,13 @@ module Anonymizer
       io.each_line do |line|
         if current_block.end_text?(line)
           output line
-          current_block = text_blocks.detect { |block| block.start_text?(line) }
+          current_block = text_blocks.detect do |block|
+            matcher = block.match_start_text(line)
+            if matcher && block.start_text? 
+              block.on_start_text(matcher, line)
+              true # result for detect
+            end
+          end
         elsif configs[current_block.table]    # optimization: only parse of the text block has a table configuration
           output current_block.parse(line)
         else                                  # otherwise output the original line

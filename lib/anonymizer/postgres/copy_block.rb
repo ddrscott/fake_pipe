@@ -14,15 +14,8 @@ module Anonymizer
       self.start_pattern = /^COPY (?<table>\S+) \((?<columns>[^)]*)\) FROM stdin;/
       self.end_pattern = /\\\\./
 
-      # When theres a match save out all the table/column information
-      def start_text?(line)
-        super.try(:tap) do |match|
-          build_column_index(match: match, line: line)
-        end
-      end
-
       # @return [Hash<Integer,String>] Index for column ordinal and column name: { 1 => column_name }
-      def build_column_index(match:, line:)
+      def on_start_text(match, line)
         @table = match[:table]
         @columns = match[:columns].split(COLUMN_SPLITTER)
         @column_idx = Hash[@columns.map.with_index { |name, i| [i, name] }]

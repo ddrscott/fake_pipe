@@ -8,13 +8,9 @@ module Anonymizer
       self.start_pattern = /^COMMENT ON COLUMN (?<table>[^\.]+)\.(?<column>\S+) IS '(?<comment>.*)';/
       self.end_pattern = /^$/
 
-      # Special case since the start of the text block contains the data
-      # #parse won't get called any other way.
-      def start_text?(line)
-        super.try(:tap) do |match|
-          self.table = match[:table]
-          parse_config(match)
-        end
+      def on_start_text(match, line)
+        self.table = match[:table]
+        parse_config(match)
       end
 
       def parse_config(match)

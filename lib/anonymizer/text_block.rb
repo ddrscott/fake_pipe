@@ -11,16 +11,24 @@ module Anonymizer
 
     attr_accessor :delegate, :start_match, :table
 
-    def initialize(delegate)
+    def initialize(delegate:)
       self.delegate = delegate
     end
 
-    def start_text?(line)
+    def match_start_text(line)
       start_pattern && (self.start_match = start_pattern.match(line))
     end
 
+    def start_text?
+      !start_match.nil?
+    end
+
     def end_text?(line)
-      end_pattern && end_pattern.match(line)
+      end_pattern && !!end_pattern.match(line)
+    end
+
+    # Override to do something interesting with the initial match or line
+    def on_start_text(_match, _line)
     end
 
     def parse(_line)
