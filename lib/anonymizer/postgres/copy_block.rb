@@ -3,8 +3,7 @@ require 'anonymizer/text_block'
 module Anonymizer
   module Postgres
     # Finds COPY... text blocks inside of `pg_dumps`
-    class CopyBlock
-      include TextBlock
+    class CopyBlock < TextBlock
 
       CSV_OPTIONS = {
         col_sep: "\t"

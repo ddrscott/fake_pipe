@@ -3,8 +3,7 @@ require 'anonymizer/text_block'
 module Anonymizer
   module Postgres
     # Finds Postgres comment DML.
-    class CommentBlock
-      include TextBlock
+    class CommentBlock < TextBlock
 
       self.start_pattern = /^COMMENT ON COLUMN (?<table>[^\.]+)\.(?<column>\S+) IS '(?<comment>.*)';/
       self.end_pattern = /^$/

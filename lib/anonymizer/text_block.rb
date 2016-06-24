@@ -1,17 +1,13 @@
 module Anonymizer
-  # Concern to define blocks of text.
   # Blocks are considered between the #start_text? and #end_text?
   # Any lines in between the start and end are passed to #parse
   #
   # @start_match is available in case there's information in there #parse could
   # find interesting.
-  module TextBlock
-    extend ActiveSupport::Concern
+  class TextBlock
 
-    included do
-      class_attribute :start_pattern
-      class_attribute :end_pattern
-    end
+    class_attribute :start_pattern
+    class_attribute :end_pattern
 
     attr_accessor :delegate, :start_match, :table
 

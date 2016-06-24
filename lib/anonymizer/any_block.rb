@@ -1,8 +1,7 @@
 module Anonymizer
   # Catch all text block.
   # Generic base state while a more interesting text block is not present.
-  class AnyBlock
-    include TextBlock
+  class AnyBlock < TextBlock
    
     def start_text?(line)
       true
