@@ -44,17 +44,24 @@ module Anonymizer
       io.each_line do |line|
         if current_block.end_text?(line)
           output line
-          current_block = text_blocks.detect do |block|
-            matcher = block.match_start_text(line)
-            if matcher && block.start_text? 
-              block.on_start_text(matcher, line)
-              true # result for detect
-            end
-          end
+          current_block = detect_and_start_text_block(line)
         elsif configs[current_block.table]    # optimization: only parse of the text block has a table configuration
           output current_block.parse(line)
         else                                  # otherwise output the original line
           output line
+        end
+      end
+    end
+
+    # Check if a line is the begining of a new text block.
+    # When it is, trigger the callbacks so the text block
+    # can initialize itself.
+    def detect_and_start_text_block(line)
+      text_blocks.detect do |block|
+        matcher = block.match_start_text(line)
+        if matcher && block.start_text? 
+          block.on_start_text(matcher, line)
+          true # result for detect
         end
       end
     end
