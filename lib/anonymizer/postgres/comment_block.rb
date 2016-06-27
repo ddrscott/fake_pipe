@@ -27,7 +27,7 @@ module Anonymizer
       end
 
       def parse(*)
-        raise '`parse` should need to be called to extract config from comments. ' \
+        raise '`parse` should not be called to extract config from comments. ' \
              ' Try inspecting the PG dump format for changes. Comments are normally all in a single line.'
       end
     end
