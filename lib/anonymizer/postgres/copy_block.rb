@@ -12,7 +12,7 @@ module Anonymizer
       COLUMN_SPLITTER = /,\s*/
 
       self.start_pattern = /^COPY (?<table>\S+) \((?<columns>[^)]*)\) FROM stdin;/
-      self.end_pattern = /\\\\./
+      self.end_pattern = /^\\\.$/
 
       # @return [Hash<Integer,String>] Index for column ordinal and column name: { 1 => column_name }
       def on_start_text(match, line)
