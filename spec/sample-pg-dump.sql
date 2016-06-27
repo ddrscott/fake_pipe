@@ -126,14 +126,59 @@ CREATE TABLE auth_users (
 ALTER TABLE auth_users OWNER TO postgres;
 
 --
--- Name: COLUMN auth_users.phone; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN auth_users.email; Type: COMMENT; Schema: public; Owner: postgres
 --
-
-COMMENT ON COLUMN auth_users.phone IS '{anon: phone_number, say: "You''re the best!"}';
 
 COMMENT ON COLUMN auth_users.email IS 'anon: email';
 
-COMMENT ON COLUMN auth_users.agency_id IS 'anon: md5';
+
+--
+-- Name: COLUMN auth_users.crypted_password; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN auth_users.crypted_password IS 'anon: bcrypt_password';
+
+
+--
+-- Name: COLUMN auth_users.password_salt; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN auth_users.password_salt IS 'anon: bcrypt_salt';
+
+
+--
+-- Name: COLUMN auth_users.persistence_token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN auth_users.persistence_token IS 'anon: empty_string';
+
+
+--
+-- Name: COLUMN auth_users.first_name; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN auth_users.first_name IS 'anon: first_name';
+
+
+--
+-- Name: COLUMN auth_users.last_name; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN auth_users.last_name IS 'anon: last_name';
+
+
+--
+-- Name: COLUMN auth_users.phone; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN auth_users.phone IS 'anon: clean_phone_number';
+
+
+--
+-- Name: COLUMN auth_users.perishable_token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN auth_users.perishable_token IS 'anon: empty_string';
 
 --
 -- Data for Name: auth_users; Type: TABLE DATA; Schema: public; Owner: postgres
