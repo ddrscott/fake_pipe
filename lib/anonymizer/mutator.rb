@@ -136,7 +136,7 @@ module Anonymizer
 
     # Faker::Name.full_name
     def mutate_full_name(_)
-      Faker::Name.full_name
+      Faker::Name.name
     end
 
     # Faker::PhoneNumber.extension
