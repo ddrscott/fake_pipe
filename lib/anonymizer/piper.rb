@@ -42,6 +42,7 @@ module Anonymizer
       # used to track which text_block is currently in use
       current_block = text_blocks.last
       io.each_line do |line|
+        line.strip!
         if current_block.end_text?(line)
           output line
           current_block = detect_and_start_text_block(line)
@@ -87,7 +88,7 @@ module Anonymizer
 
     # Simple wrapper to print to the configured #outputter
     def output(text)
-      outputter.print text
+      outputter.puts text
     end
   end
 end

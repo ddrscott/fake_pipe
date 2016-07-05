@@ -3,15 +3,35 @@ require 'spec_helper'
 module Anonymizer
   describe Piper do
     let(:outputter) { StringIO.new }
-    it 'does something useful' do
-      File.open('spec/sample-pg-dump.sql', 'r') do |f|
-        parser = described_class.new(io: f, outputter: outputter, handlers: [CopyHandler])
-        result = parser.parse
-        expect(parser.comments).to eq('auth_users' => {
-                                        'phone' => 'phone_number',
-                                        'email' => 'email',
-                                        'agency_id' => 'md5'
-                                      })
+
+    context 'Emails' do
+      let(:sql) {<<-SQL
+COMMENT ON COLUMN users.email IS 'anon: email';
+
+COPY users (id, email) FROM stdin;
+0	a@example.com
+1	b@example.com
+\.
+                 SQL
+      }
+      let(:faked_sql) {<<-SQL
+COMMENT ON COLUMN users.email IS 'anon: email';
+
+COPY users (id, email) FROM stdin;
+0	foo@faked.com
+1	foo@faked.com
+\.
+      SQL
+      }
+      before do
+        allow(Mutator).to receive(:mutate_email).and_return("foo@faked.com")
+      end
+      it 'handles email' do
+        output = StringIO.new
+        instance = described_class.new(io: StringIO.new(sql), outputter: output, adapter: 'postgres')
+        instance.run
+        output.rewind
+        expect(output.read).to eq(faked_sql)
       end
     end
   end

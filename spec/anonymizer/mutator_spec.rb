@@ -5,7 +5,7 @@ module Anonymizer
     context 'happy path' do
       it 'lists mutators' do
         expect(described_class.list)
-          .to contain_exactly(*%w(phone_number email md5))
+          .to contain_exactly("address_city", "address_country", "address_line_1", "address_line_2", "address_postcode", "address_state", "bcrypt_password", "bcrypt_salt", "clean_phone_number", "company_catch_phrase", "company_name", "email", "empty_string", "first_name", "full_name", "last_name", "lorem_paragraph", "lorem_sentence", "lorem_word", "md5", "phone_ext", "phone_number", "url", "user_name", "uuid")
       end
     end
 
