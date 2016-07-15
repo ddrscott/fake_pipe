@@ -195,6 +195,8 @@ abe9fd39-f0b3-4ec6-9006-9783fbdade07	fun@example.com	400$8$50$ef1eb813f8d8b99d$2
 
 COMMENT ON COLUMN messages.message IS 'anon: lorem_paragraph';
 
-COPY messages (id, message, recipient) FROM stdin;
-20f654fe-b27d-4051-9fd4-da7eea1b9aa0	Hello -\nI'm writing in regards to the stuff I've been receiving. Double quotes are "awesome"!	support@example.com
+COMMENT ON COLUMN messages.notes IS 'anon: lorem_paragraph';
+
+COPY messages (id, message, recipient, notes) FROM stdin;
+20f654fe-b27d-4051-9fd4-da7eea1b9aa0	Hello -\nI'm writing in regards to the stuff I've been receiving. Double quotes are "awesome"!	support@example.com	\N
 \.

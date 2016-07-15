@@ -26,7 +26,12 @@ module Anonymizer
       def parse(line)
         row = line.split(DELIMITER)
         faked = row.map.with_index do |cell, i|
-          delegate.on_cell(table: @table, column: @column_idx[i], cell: cell)
+          if cell.blank? || cell == '\N'
+            # Don't acknowledge null cells
+            cell
+          else
+            delegate.on_cell(table: @table, column: @column_idx[i], cell: cell)
+          end
         end
         faked.join(DELIMITER)
       end
