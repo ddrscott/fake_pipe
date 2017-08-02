@@ -104,6 +104,16 @@ module Anonymizer
       Faker::Company.catch_phrase
     end
 
+    # an empty curly brace '{}' - good for json object and array fields
+    def mutate_empty_curly(_)
+      '{}'
+    end
+
+    # an empty bracket '[]' - good for json::array objects
+    def mutate_empty_bracket(_)
+      '[]'
+    end
+
     # an empty String
     def mutate_empty_string(_)
       ''
@@ -136,7 +146,7 @@ module Anonymizer
 
     # Faker::Name.full_name
     def mutate_full_name(_)
-      Faker::Name.full_name
+      Faker::Name.name
     end
 
     # Faker::PhoneNumber.extension
@@ -154,10 +164,21 @@ module Anonymizer
       'au6lOASvp17AGsqkmE7'
     end
 
-    # GUID/UUID
+    ALPHABET = ('A'..'Z').to_a
+    DIGITS = ('0'..'9').to_a
+    # Six random uppercase letters followed by four random numbers - ex. 'ABCDEF1234'
+    def mutate_ugcid(_)
+      (ALPHABET.sample(6) + DIGITS.sample(4)).join
+    end
+
+    # UUID
     def mutate_uuid(_)
       SecureRandom.uuid
     end
-    alias mutate_guid mutate_uuid
+
+    # Reopen class to define aliases on module_function
+    class << self
+      alias mutate_guid mutate_uuid
+    end
   end
 end

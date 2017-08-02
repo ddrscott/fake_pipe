@@ -87,7 +87,7 @@ module Anonymizer
 
     # Simple wrapper to print to the configured #outputter
     def output(text)
-      outputter.print text
+      outputter.puts text
     end
   end
 end

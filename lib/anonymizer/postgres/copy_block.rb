@@ -5,9 +5,7 @@ module Anonymizer
     # Finds COPY... text blocks inside of `pg_dumps`
     class CopyBlock < TextBlock
 
-      CSV_OPTIONS = {
-        col_sep: "\t"
-      }.freeze
+      DELIMITER = "\t"
 
       COLUMN_SPLITTER = /,\s*/
 
@@ -21,13 +19,21 @@ module Anonymizer
         @column_idx = Hash[@columns.map.with_index { |name, i| [i, name] }]
       end
 
+      # Postgres COPY format is NOT CSV.
+      # >  https://www.postgresql.org/docs/9.1/static/sql-copy.html
+      #
       # @return [String] maybe mutated by `delegate.on_cell`
       def parse(line)
-        row = CSV.parse(line, CSV_OPTIONS).first
+        row = line.split(DELIMITER)
         faked = row.map.with_index do |cell, i|
-          delegate.on_cell(table: @table, column: @column_idx[i], cell: cell)
+          if cell.blank? || cell == '\N'
+            # Don't acknowledge null cells
+            cell
+          else
+            delegate.on_cell(table: @table, column: @column_idx[i], cell: cell)
+          end
         end
-        CSV.generate_line(faked, CSV_OPTIONS)
+        faked.join(DELIMITER)
       end
     end
   end

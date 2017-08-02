@@ -191,3 +191,13 @@ ab344f75-d78a-47ba-a4f7-121275b3b241	donna@example.com	400$8$4a$fb1a833f95079502
 f7bd4a7f-b63f-41c3-83bd-9683f33bb4b3	charlie@example.com	400$8$50$8368e20d878ef1b1$b271e3af024b424b7256592439a35d6eb224b4dc769ac9f2fa564b282efb8a47	QOqWQ24CMiRNuPUz8f5	02cbd8d1e9690c7786375f9f6ec4da6fa3c2ead70d41a7aa1d7fe631477b42635210f0e8fa7579f6f4b5afdb364d9465623a2861ecff75fa3a052c9b2a9fc2dd	2016-06-03 18:23:06.739671	2016-06-03 18:23:06.739671	t	Charlie	Young	\N	1231231234	rkU7yVplV5FMsoJFDkaM	\N	f	\N	\N	\N	\N
 abe9fd39-f0b3-4ec6-9006-9783fbdade07	fun@example.com	400$8$50$ef1eb813f8d8b99d$2932a9dc75d10f13525e43c29726061d99b4ebdff2e9f9951eb6e2393f36d221	uMYA6c3A7uGoI0aEbJ8R	b09909b6e83938dd41ffb5e931eeb3d646b1856dfb74a81acb1697b6d8466468047fe92286e011a4634c71b8d8775c7d5a31e19ce111bd31d0a61a4faf93d6af	2016-06-03 18:23:05.797143	2016-06-07 21:53:45.149755	t	Fun	Buyer	5030cc27-e7a8-4768-b355-20cdcf9efc53	1112223333	8npwjv7m8NmCTT9eZdIK	\N	f	\N	\N	\N	2016-06-07 21:53:45.148823
 \.
+
+
+COMMENT ON COLUMN messages.message IS 'anon: lorem_paragraph';
+
+COMMENT ON COLUMN messages.notes IS 'anon: lorem_paragraph';
+
+COPY messages (id, message, recipient, notes) FROM stdin;
+20f654fe-b27d-4051-9fd4-000000000001	Hello -\nI'm writing in regards to the stuff I've been receiving. Double quotes are "awesome"!	support@example.com	\N
+20f654fe-b27d-4051-9fd4-000000000002	Anything	
+\.
