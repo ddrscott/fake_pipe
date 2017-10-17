@@ -5,42 +5,21 @@ for exporting to various departments for analytics and troubleshooting.  This to
 allows us to annotate a DB schema with special comments that can trigger
 different data mutations
 
-FakePipe
+## Workflow with Fake Pipe
 
-## Workflow with FakePipe
-
-Here's how FakePipe could work in a projects lifecycle. These steps assume a
-Postgres database:
+Here's how FakePipe could work in a project's lifecycle. These steps assume
+you're using Postgres database:
 
 1. Add comment to table column: `COMMENT ON COLUMN user.phone IS 'anon: phone_number';`.
 2. Pipe DB dump to fake_pipe: `pg_dump my_db | fake_pipe > anon-db-dump.sql`.
 3. Send `anon-db-dump.sql` to needy people.
 
 
-## Basic Class Diagram
-
-TODO This is subject to change!
-
-    +---------------+       +----------------------------------+
-    | Piper         |       | DatabaseAdapter/PostgresAdapter  |
-    | * stdin       |       | * match comments                 |
-    | * stdout      +-------> * match dml                      |
-    | * main loop   |       |   * delegate.on_cell(name, cell) |
-    | * def on_cell |       |                                  |
-    |               |       +----------------------------------+
-    |               |
-    |               |       +-----------------+
-    |               |       | Mutator         |
-    |               +-------> * phone_number  |
-    +---------------+       | * email         |
-                            |                 |
-                            +-----------------+
-
 # Comment Dialect
 
 Schema columns comments are in [YAML format](http://www.yaml.org/start.html).
 Using some of it's option quoting, it can look very much like JSON. The reason
-it was chosen over JSON is due for the optional quotes. That means the following
+it was chosen over JSON is for the optional quotes. That means the following
 syntax will resolve to the same Ruby definition:
 
 ```
@@ -59,19 +38,42 @@ Any keys unknown by FakePipe will be ignored. So annotations from other system
 shouldn't interfere. We do hope the abbreviated YAML syntax is simple to parse
 by all systems.
 
-## Currently Support FakePipe Methods
+## Currently Support Mutation Methods
 
 To get a current list try running `rake methods` from terminal.
 
 ```sh
 $ rake methods
-anon: email         # Faker email
-anon: md5           # MD5 hash of cell contents
-anon: phone_number  # Faker::PhoneNumber with digits only
+anon: address_city          # Faker::Address.city
+anon: address_country       # Faker::Address.country
+anon: address_line_1        # Faker::Address.street_address
+anon: address_line_2        # Faker::Address.secondary_address
+anon: address_postcode      # Faker::Address.postcode
+anon: address_state         # Faker::Address.state
+anon: bcrypt_password       # bcrypt password as 'password'
+anon: bcrypt_salt           # bcrypt salt used to generate password
+anon: clean_phone_number    # Faker::PhoneNumber 10-digits only
+anon: company_catch_phrase  # Faker::Company.catch_phrase
+anon: company_name          # Faker::Company.name
+anon: email                 # Faker email
+anon: empty_bracket         # an empty bracket '[]' - good for json::array objects
+anon: empty_curly           # an empty curly brace '{}' - good for json object and array fields
+anon: empty_string          # an empty String
+anon: first_name            # Faker::Name.first_name
+anon: full_name             # Faker::Name.full_name
+anon: guid                  # UUID
+anon: last_name             # Faker::Name.last_name
+anon: lorem_paragraph       # Faker::Lorem.paragraph
+anon: lorem_sentence        # Faker::Lorem.sentence
+anon: lorem_word            # Faker::Lorem.word
+anon: md5                   # MD5 hash of cell contents
+anon: phone_ext             # Faker::PhoneNumber.extension
+anon: phone_number          # Faker::PhoneNumber with punctuation and extensions
+anon: ugcid                 # Six random uppercase letters followed by four random numbers - ex. 'ABCDEF1234'
+anon: url                   # Faker::Internet.url
+anon: user_name             # Faker::Internet.user_name
+anon: uuid                  # UUID
 ```
-
-TODO clean up README. The following is default stock from `bundle gem ...`
-
 
 # Decisions
 - 2016-06-08
@@ -114,7 +116,7 @@ git commits and tags, and push the `.gem` file to
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at
-https://github.com/centro/fake_pipe.
+https://github.com/ddrscott/fake_pipe.
 
 
 ## License

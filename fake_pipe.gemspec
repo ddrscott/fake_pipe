@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Scott Pierce']
   spec.email         = ['ddrscott@gmail.com']
 
-  spec.summary       = 'db_dump.sql | fake_pipe > fake_dump.sql'
+  spec.summary       = 'Anonymize a database SQL dump file by adding schema comments and piping through `fake_pipe`'
   spec.homepage      = 'https://github.com/centro/fake_pipe'
   spec.license       = 'MIT'
 
