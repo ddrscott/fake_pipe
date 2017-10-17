@@ -1,6 +1,6 @@
-require 'anonymizer/text_block'
+require 'fake_pipe/text_block'
 
-module Anonymizer
+module FakePipe
   module Postgres
     # Finds Postgres comment DML.
     class CommentBlock < TextBlock

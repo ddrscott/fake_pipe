@@ -1,4 +1,4 @@
-module Anonymizer
+module FakePipe
   # This class handles mapping between a configured mutation such as
   # 'phone_number' and the logic to change the data.
   #

@@ -1,6 +1,6 @@
-require 'anonymizer/text_block'
+require 'fake_pipe/text_block'
 
-module Anonymizer
+module FakePipe
   module Postgres
     # Finds COPY... text blocks inside of `pg_dumps`
     class CopyBlock < TextBlock

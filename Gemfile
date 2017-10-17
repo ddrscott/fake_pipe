@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in anonymizer.gemspec
+# Specify your gem's dependencies in fake_pipe.gemspec
 gemspec
 
 group :development do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Anonymizer
+module FakePipe
   describe Mutator do
     context 'happy path' do
       it 'lists mutators' do

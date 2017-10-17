@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Anonymizer
+module FakePipe
   describe Piper do
     let(:outputter) { StringIO.new }
 

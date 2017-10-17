@@ -1,17 +1,19 @@
 # Overview
 
 We need a simply way to [anonymize data](https://en.wikipedia.org/wiki/Data_anonymization)
-for exporting to various departs for analytics and troubleshooting.  This tool
+for exporting to various departments for analytics and troubleshooting.  This tool
 allows us to annotate a DB schema with special comments that can trigger
-different data mutations s
+different data mutations
 
-## Workflow with Anonymizer
+FakePipe
 
-Here's how Anonymizer could work in a projects lifecycle. These steps assume a
+## Workflow with FakePipe
+
+Here's how FakePipe could work in a projects lifecycle. These steps assume a
 Postgres database:
 
 1. Add comment to table column: `COMMENT ON COLUMN user.phone IS 'anon: phone_number';`.
-2. Pipe DB dump to anonymizer: `pg_dump my_db | anonymizer > anon-db-dump.sql`.
+2. Pipe DB dump to fake_pipe: `pg_dump my_db | fake_pipe > anon-db-dump.sql`.
 3. Send `anon-db-dump.sql` to needy people.
 
 
@@ -53,11 +55,11 @@ width: 100
 
 For single options, the quotes can be omitted: `color: red`.
 
-Any keys unknown by Anonymizer will be ignored. So annotations from other system
+Any keys unknown by FakePipe will be ignored. So annotations from other system
 shouldn't interfere. We do hope the abbreviated YAML syntax is simple to parse
 by all systems.
 
-## Currently Support Anonymizer Methods
+## Currently Support FakePipe Methods
 
 To get a current list try running `rake methods` from terminal.
 
@@ -83,7 +85,7 @@ TODO clean up README. The following is default stock from `bundle gem ...`
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'anonymizer'
+gem 'fake_pipe'
 ```
 
 And then execute:
@@ -92,7 +94,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install anonymizer
+    $ gem install fake_pipe
 
 ## Usage
 
@@ -112,7 +114,7 @@ git commits and tags, and push the `.gem` file to
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at
-https://github.com/centro/anonymizer.
+https://github.com/centro/fake_pipe.
 
 
 ## License

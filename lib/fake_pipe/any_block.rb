@@ -1,4 +1,4 @@
-module Anonymizer
+module FakePipe
   # Catch all text block.
   # Generic base state while a more interesting text block is not present.
   class AnyBlock < TextBlock

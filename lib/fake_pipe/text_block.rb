@@ -1,4 +1,4 @@
-module Anonymizer
+module FakePipe
   # Blocks are considered between the #start_text? and #end_text?
   # Any lines in between the start and end are passed to #parse
   #

@@ -1,11 +1,11 @@
-module Anonymizer
-  # Provides helper migration method to set a valid anonymizer comment.
+module FakePipe
+  # Provides helper migration method to set a valid fake_pipe comment.
   # Currently this only supports the follwing DB adapter types:
   #   postgres
   #
   # To support more implement aa private `execute_comment_<dialect>` method.
   module Commenter
-    # Generates an anonymizer comment for the give table and column.
+    # Generates an fake_pipe comment for the give table and column.
     # This is uses `reversible` so it should be safe to use within a `change`
     # style migration.
     #

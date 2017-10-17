@@ -1,9 +1,9 @@
-module Anonymizer
+module FakePipe
   # This class cooridinates between all the text blocks.
   # The class is initialized with some input io, an output io, and an adapter.
   #
   # ## Adapter
-  # An adapter is created by creating a module directly under anonymizer. The
+  # An adapter is created by creating a module directly under fake_pipe. The
   # module must respond to `text_blocks` which will return all the `TextBlock`
   # classes needed to call `on_config` and `on_cell`.
   #
@@ -18,7 +18,7 @@ module Anonymizer
   class Piper
     attr_accessor :io, :configs, :outputter, :text_blocks
 
-    # @param [String] adapter should be a module file directly under the 'anonymizer' path
+    # @param [String] adapter should be a module file directly under the 'fake_pipe' path
     def initialize(io:, outputter:, adapter:)
       self.configs = {}
       self.io = io
@@ -27,7 +27,7 @@ module Anonymizer
     end
 
     def register_adapter(adapter)
-      adapter_module = "anonymizer/#{adapter}"
+      adapter_module = "fake_pipe/#{adapter}"
       require adapter_module
       adapter_class = adapter_module.camelize.constantize
       self.text_blocks = adapter_class.text_blocks.map do |block_class|
