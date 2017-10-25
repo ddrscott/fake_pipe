@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['ddrscott@gmail.com']
 
   spec.summary       = 'Anonymize a database SQL dump file by adding schema comments and piping through `fake_pipe`'
-  spec.homepage      = 'https://github.com/centro/fake_pipe'
+  spec.homepage      = 'https://github.com/ddrscott/fake_pipe'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
