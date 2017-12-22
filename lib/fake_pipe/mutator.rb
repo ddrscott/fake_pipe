@@ -181,7 +181,10 @@ module FakePipe
       Faker::Bank.name
     end
 
-    
+    # Faker::Address.zip_code
+    def mutate_zip_code(_)
+      Faker::Address.zip_code
+    end
 
     # Reopen class to define aliases on module_function
     class << self
