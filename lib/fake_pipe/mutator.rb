@@ -176,6 +176,13 @@ module FakePipe
       SecureRandom.uuid
     end
 
+    # Faker::Bank.name
+    def mutate_bank_name(_)
+      Faker::Bank.name
+    end
+
+    
+
     # Reopen class to define aliases on module_function
     class << self
       alias mutate_guid mutate_uuid
