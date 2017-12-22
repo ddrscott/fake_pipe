@@ -50,6 +50,7 @@ anon: address_line_1        # Faker::Address.street_address
 anon: address_line_2        # Faker::Address.secondary_address
 anon: address_postcode      # Faker::Address.postcode
 anon: address_state         # Faker::Address.state
+anon: bank_name             # Faker::Bank.name
 anon: bcrypt_password       # bcrypt password as 'password'
 anon: bcrypt_salt           # bcrypt salt used to generate password
 anon: clean_phone_number    # Faker::PhoneNumber 10-digits only
@@ -63,6 +64,8 @@ anon: first_name            # Faker::Name.first_name
 anon: full_name             # Faker::Name.full_name
 anon: guid                  # UUID
 anon: last_name             # Faker::Name.last_name
+anon: latitude              # Faker::Address.latitude
+anon: longitude             # Faker::Address.longitude
 anon: lorem_paragraph       # Faker::Lorem.paragraph
 anon: lorem_sentence        # Faker::Lorem.sentence
 anon: lorem_word            # Faker::Lorem.word
@@ -73,6 +76,7 @@ anon: ugcid                 # Six random uppercase letters followed by four rand
 anon: url                   # Faker::Internet.url
 anon: user_name             # Faker::Internet.user_name
 anon: uuid                  # UUID
+anon: zip_code              # Faker::Address.zip_code
 ```
 
 # Decisions
@@ -118,6 +122,9 @@ git commits and tags, and push the `.gem` file to
 Bug reports and pull requests are welcome on GitHub at
 https://github.com/ddrscott/fake_pipe.
 
+### Contributors
+Thanks to the following contributors:
+- [biozid-0208](https://github.com/biozid-0208)
 
 ## License
 
