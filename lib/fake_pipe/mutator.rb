@@ -94,6 +94,16 @@ module FakePipe
       Faker::Address.postcode
     end
 
+    # Faker::Address.latitude
+    def mutate_latitude(_)
+      Faker::Address.latitude
+    end
+
+    # Faker::Address.longitude
+    def mutate_longitude(_)
+      Faker::Address.longitude
+    end
+
     # Faker::Company.name
     def mutate_company_name(_)
       Faker::Company.name
