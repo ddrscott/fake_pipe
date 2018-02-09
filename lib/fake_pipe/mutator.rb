@@ -109,6 +109,42 @@ module FakePipe
       Faker::Company.name
     end
 
+    # Faker::Internet.ip_v4_address
+    def mutate_ip_v4_address(_)
+      Faker::Internet.ip_v4_address
+    end
+
+    # Faker::Internet.domain_name
+    def mutate_domain_name(_)
+      Faker::Internet.domain_name
+    end
+
+    # Faker::Internet.domain_name
+    def mutate_domain_suffix(_)
+      Faker::Internet.domain_suffix
+    end
+
+    # Faker::Commerce.price
+    def mutate_commerce_price(_)
+      Faker::Commerce.price
+    end
+
+    # Faker::Number.decimal
+    def mutate_decimal_number(l_digits, precision=nil)
+      precision = l_digits unless precision.present?
+      Faker::Number.decimal(l_digits, precision)
+    end
+
+    #Faker::Number.number
+    def mutate_number(digits)
+      Faker::Number.number(digits)
+    end
+
+    # Faker::Number.digit
+    def mutate_digit(_)
+      Faker::Number.digit
+    end
+
     # Faker::Company.catch_phrase
     def mutate_company_catch_phrase(_)
       Faker::Company.catch_phrase
