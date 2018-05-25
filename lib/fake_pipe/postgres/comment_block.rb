@@ -5,7 +5,7 @@ module FakePipe
     # Finds Postgres comment DML.
     class CommentBlock < TextBlock
 
-      self.start_pattern = /^COMMENT ON COLUMN (?<table>[^\.]+)\.(?<column>\S+) IS '(?<comment>.*)';/
+      self.start_pattern = /^COMMENT ON COLUMN (?<table>.+)\.(?<column>\S+) IS '(?<comment>.*)';/
       self.end_pattern = /^$/
 
       def on_start_text(match, line)
