@@ -41,7 +41,14 @@ COPY users (id, email) FROM stdin;
         let(:sql) {<<-SQL
 COMMENT ON COLUMN public.users.email IS 'anon: email';
 
+COMMENT ON COLUMN "tenant1".users.email IS 'anon: email';
+
 COPY public.users (id, email) FROM stdin;
+0	a@example.com
+1	b@example.com
+\.
+
+COPY "tenant1".users (id, email) FROM stdin;
 0	a@example.com
 1	b@example.com
 \.
@@ -50,7 +57,14 @@ COPY public.users (id, email) FROM stdin;
         let(:faked_sql) {<<-SQL
 COMMENT ON COLUMN public.users.email IS 'anon: email';
 
+COMMENT ON COLUMN "tenant1".users.email IS 'anon: email';
+
 COPY public.users (id, email) FROM stdin;
+0	foo@faked.com
+1	foo@faked.com
+\.
+
+COPY "tenant1".users (id, email) FROM stdin;
 0	foo@faked.com
 1	foo@faked.com
 \.
