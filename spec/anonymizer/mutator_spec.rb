@@ -74,13 +74,13 @@ module FakePipe
 
       context '#mutate_latitude' do
         it 'matches proper format' do
-          expect(described_class.mutate('latitude', 'dont_care').to_s).to match /^(\-?\d+(\.\d+)?).\s*(\-?\d+(\.\d+)?)$/
+          expect(described_class.mutate('latitude', 'dont_care').to_s).to match /^[-+]?\d*\.?\d+$/
         end
       end
 
       context '#mutate_longitude' do
         it 'matches proper format' do
-          expect(described_class.mutate('longitude', 'dont_care').to_s).to match /^(\-?\d+(\.\d+)?).\s*(\-?\d+(\.\d+)?)$/
+          expect(described_class.mutate('longitude', 'dont_care').to_s).to match /^[-+]?\d*\.?\d+$/
         end
       end
 
