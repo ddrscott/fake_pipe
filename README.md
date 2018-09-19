@@ -125,6 +125,7 @@ https://github.com/ddrscott/fake_pipe.
 ### Contributors
 Thanks to the following contributors:
 - [biozid-0208](https://github.com/biozid-0208)
+- [luxflux](https://github.com/luxflux)
 
 ## License
 
