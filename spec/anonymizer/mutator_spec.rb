@@ -5,7 +5,7 @@ module FakePipe
     context 'happy path' do
       it 'lists mutators' do
         expect(described_class.list)
-          .to contain_exactly('address_city','zip_code','latitude', 'longitude','address_country', 'address_line_1', 'address_line_2', 'address_postcode', 'address_state', 'bcrypt_password', 'bcrypt_salt', 'clean_phone_number', 'company_catch_phrase', 'company_name', 'email', 'empty_curly', 'empty_bracket', 'empty_string', 'first_name', 'full_name', 'last_name', 'lorem_paragraph', 'lorem_sentence', 'lorem_word', 'md5', 'phone_ext', 'phone_number', 'url', 'user_name', 'uuid', 'guid', 'ugcid', 'bank_name')
+          .to contain_exactly('address_city','zip_code','latitude', 'longitude','address_country', 'address_line_1', 'address_line_2', 'address_postcode', 'address_state', 'bcrypt_password', 'bcrypt_salt', 'clean_phone_number', 'company_catch_phrase', 'company_name', 'email', 'empty_curly', 'empty_bracket', 'empty_string', 'first_name', 'full_name', 'last_name', 'lorem_paragraph', 'lorem_sentence', 'lorem_word', 'md5', 'phone_ext', 'phone_number', 'url', 'user_name', 'uuid', 'guid', 'ugcid', 'bank_name', 'large_number', 'small_number')
       end
 
       context '#mutate_clean_phone_number' do
@@ -209,6 +209,19 @@ module FakePipe
           expect(described_class.mutate('empty_bracket', 'dont_care')).to eq '[]'
         end
       end
+
+      context '#mutate_large_number' do
+        it 'matches proper format' do
+          expect(described_class.mutate('large_number', 'dont_care')).to match(/\d{8}/)
+        end
+      end
+
+      context '#mutate_small_number' do
+        it 'matches proper format' do
+          expect(described_class.mutate('small_number', 'dont_care')).to match(/\d{2}/)
+        end
+      end      
+      
     end
 
     context 'sad path' do
