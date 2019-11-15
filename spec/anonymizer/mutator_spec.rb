@@ -164,7 +164,7 @@ module FakePipe
       context '#mutate_digit' do
         it 'matches proper format' do
           expect(
-            described_class.mutate('digit', 'dont_care')
+            described_class.mutate('digit', 'dont_care').to_s
           ).to match(/^[0-9]$/)
         end
       end
@@ -315,10 +315,10 @@ module FakePipe
       context '#mutate_number' do
         it 'matches proper format' do
           expect(
-            described_class.mutate('number', 2)
+            described_class.mutate('number', 2).to_s
           ).to match(/^[0-9]{2}$/)
           expect(
-            described_class.mutate('number', 5)
+            described_class.mutate('number', 5).to_s
           ).to match(/^[0-9]{5}$/)
         end
       end
