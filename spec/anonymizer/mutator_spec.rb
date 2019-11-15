@@ -5,7 +5,8 @@ module FakePipe
     context 'happy path' do
       it 'lists mutators' do
         expect(described_class.list)
-          .to contain_exactly('address_city','zip_code','latitude', 'longitude','address_country', 'address_line_1', 'address_line_2', 'address_postcode', 'address_state', 'bcrypt_password', 'bcrypt_salt', 'clean_phone_number', 'company_catch_phrase', 'company_name', 'email', 'empty_curly', 'empty_bracket', 'empty_string', 'first_name', 'full_name', 'last_name', 'lorem_paragraph', 'lorem_sentence', 'lorem_word', 'md5', 'phone_ext', 'phone_number', 'url', 'user_name', 'uuid', 'guid', 'ugcid', 'bank_name')
+          .to contain_exactly('address_city','zip_code','latitude', 'longitude','address_country', 'address_line_1', 'address_line_2', 'address_postcode', 'address_state', 'bcrypt_password', 'bcrypt_salt', 'clean_phone_number', 'company_catch_phrase', 'company_name', 'email', 'empty_curly', 'empty_bracket', 'empty_string', 'first_name', 'full_name', 'last_name', 'lorem_paragraph', 'lorem_sentence', 'lorem_word', 'md5', 'phone_ext', 'phone_number', 'url', 'user_name', 'uuid', 'guid', 'ugcid', 'bank_name',
+                              'commerce_price', 'decimal_number', 'digit', 'domain_name', 'domain_suffix', 'ip_v4_address', 'number')
       end
 
       context '#mutate_clean_phone_number' do
@@ -149,7 +150,50 @@ module FakePipe
           expect(described_class.mutate('phone_ext', 'dont_care')).to match /[0-9]+/
         end
       end
+      
+      context '#mutate_ip_v4_address' do
+        it 'matches proper format' do
+          expect((described_class.mutate('ip_v4_address', 'dont_care').split('.').map{|octet| octet.to_i}.max)).to be <= 255
+        end
+      end
 
+      context '#mutate_domain_name' do
+        it 'matches proper format' do
+          expect(described_class.mutate('domain_name', 'dont_care')).to match /\w+\.\w+/
+        end
+      end
+
+      context '#mutate_domain_suffix' do
+        it 'matches proper format' do
+          expect(described_class.mutate('domain_suffix', 'dont_care')).to match /\w+/
+        end
+      end
+
+      context '#mutate_commerce_price' do
+        it 'matches proper format' do
+          expect(described_class.mutate('commerce_price', 'dont_care')).to be_a Float
+        end
+      end
+
+      context '#mutate_decimal_number' do
+        it 'matches proper format' do
+          expect(described_class.mutate('decimal_number', 2).to_d).to be_a Numeric
+        end
+      end
+
+      context '#mutate_digit' do
+        it 'matches proper format' do
+          expect(described_class.mutate('digit', 'dont_care')).to match /^[0-9]$/
+        end
+      end
+
+      context '#mutate_number' do
+        it 'matches proper format' do
+          expect(described_class.mutate('number', 2)).to match /^[0-9]{2}$/
+          expect(described_class.mutate('number', 5)).to match /^[0-9]{5}$/
+        end
+      end
+      
       context '#mutate_zip_code' do
         it 'matches proper format' do
           expect(described_class.mutate('zip_code', 'dont_care')).to match /^[0-9]+[-]{0,1}[0-9]+$/
