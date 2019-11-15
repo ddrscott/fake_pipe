@@ -76,7 +76,7 @@ anon: lorem_paragraph       # Faker::Lorem.paragraph
 anon: lorem_sentence        # Faker::Lorem.sentence
 anon: lorem_word            # Faker::Lorem.word
 anon: md5                   # MD5 hash of cell contents
-anon: number                #Faker::Number.number
+anon: number                # Faker::Number.number
 anon: phone_ext             # Faker::PhoneNumber.extension
 anon: phone_number          # Faker::PhoneNumber with punctuation and extensions
 anon: ugcid                 # Six random uppercase letters followed by four random numbers - ex. 'ABCDEF1234'
