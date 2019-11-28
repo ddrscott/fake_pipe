@@ -273,6 +273,30 @@ module FakePipe
           ).to match(/^[-+]?\d*\.?\d+$/)
         end
       end
+      
+      context '#mutate_ip_v4_address' do
+        it 'matches proper format' do
+          expect((described_class.mutate('ip_v4_address', 'dont_care').split('.').map{|octet| octet.to_i}.max)).to be <= 255
+        end
+      end
+
+      context '#mutate_domain_name' do
+        it 'matches proper format' do
+          expect(described_class.mutate('domain_name', 'dont_care')).to match /\w+\.\w+/
+        end
+      end
+
+      context '#mutate_domain_suffix' do
+        it 'matches proper format' do
+          expect(described_class.mutate('domain_suffix', 'dont_care')).to match /\w+/
+        end
+      end
+
+      context '#mutate_commerce_price' do
+        it 'matches proper format' do
+          expect(described_class.mutate('commerce_price', 'dont_care')).to be_a Float
+        end
+      end
 
       context '#mutate_lorem_paragraph' do
         it 'matches proper format' do
