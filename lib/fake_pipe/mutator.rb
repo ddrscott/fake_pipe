@@ -137,7 +137,7 @@ module FakePipe
 
     #Faker::Number.number
     def mutate_number(digits)
-      Faker::Number.number(digits)
+      Faker::Number.number(digits: digits)
     end
 
     # Faker::Number.digit

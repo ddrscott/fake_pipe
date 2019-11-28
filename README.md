@@ -54,8 +54,13 @@ anon: bank_name             # Faker::Bank.name
 anon: bcrypt_password       # bcrypt password as 'password'
 anon: bcrypt_salt           # bcrypt salt used to generate password
 anon: clean_phone_number    # Faker::PhoneNumber 10-digits only
+anon: commerce_price        # Faker::Commerce.price
 anon: company_catch_phrase  # Faker::Company.catch_phrase
 anon: company_name          # Faker::Company.name
+anon: decimal_number        # Faker::Number.decimal
+anon: digit                 # Faker::Number.digit
+anon: domain_name           # Faker::Internet.domain_name
+anon: domain_suffix         # Faker::Internet.domain_name
 anon: email                 # Faker email
 anon: empty_bracket         # an empty bracket '[]' - good for json::array objects
 anon: empty_curly           # an empty curly brace '{}' - good for json object and array fields
@@ -63,6 +68,7 @@ anon: empty_string          # an empty String
 anon: first_name            # Faker::Name.first_name
 anon: full_name             # Faker::Name.full_name
 anon: guid                  # UUID
+anon: ip_v4_address         # Faker::Internet.ip_v4_address
 anon: last_name             # Faker::Name.last_name
 anon: latitude              # Faker::Address.latitude
 anon: longitude             # Faker::Address.longitude
@@ -70,6 +76,7 @@ anon: lorem_paragraph       # Faker::Lorem.paragraph
 anon: lorem_sentence        # Faker::Lorem.sentence
 anon: lorem_word            # Faker::Lorem.word
 anon: md5                   # MD5 hash of cell contents
+anon: number                # Faker::Number.number
 anon: phone_ext             # Faker::PhoneNumber.extension
 anon: phone_number          # Faker::PhoneNumber with punctuation and extensions
 anon: ugcid                 # Six random uppercase letters followed by four random numbers - ex. 'ABCDEF1234'
